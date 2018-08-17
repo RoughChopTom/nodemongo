@@ -1,7 +1,8 @@
 const express = require('express');
-const router = express.Router();
 
 const UserCalculation = require('./models/user-calculation');
+
+const router = express.Router();
 
 router.route('/usercalculations').get((req, res) => {
     UserCalculation.find((err, userCalculations) => {
@@ -32,25 +33,6 @@ router.route('/usercalculations/add').post((req, res) => {
         .catch(() => {
             res.status(400).send('Failed to create new record');
         });
-});
-
-router.route('/usercalculations/update/:id').post((req, res) => {
-    UserCalculation.findById(req.params.id, (err, userCalculation) => {
-        if (!userCalculation) {
-            return next(new Error('Could not load Document'));
-        }
-        userCalculation.superannuation = req.body.superannuation;
-        userCalculation.gross = req.body.gross;
-        userCalculation.gross_superannuation = req.body.gross_superannuation;
-        userCalculation.tax = req.body.tax;
-        userCalculation.net = req.body.net;
-        userCalculation.net_superannuation = req.body.net_superannuation;
-        userCalculation.save().then(() => {
-            res.json('Update done');
-        }).catch(() => {
-            res.status(400).send('Update failed');
-        });
-    });
 });
 
 router.route('/usercalculations/delete/:id').delete((req, res) => {

@@ -4,14 +4,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const routes = require('./routes');
-const config_data = require('./config/config.development');
+const configData = require('./config/config.development');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-mongoose.connect(config_data.mongodb_context).catch(reason => console.log(reason));
-const connection = mongoose.connection;
-connection.once('open', () => {
+mongoose.connect(configData.mongodbContext, {useNewUrlParser: true}).catch(reason => console.log(reason));
+mongoose.connection.once('open', () => {
     console.log('MongoDB database connection established successfully!');
 });
 
