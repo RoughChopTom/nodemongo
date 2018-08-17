@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-let UserCalculations = new Schema({
+let UserCalculation = new Schema({
     _id: {
         type: Number
     },
     username: {
-        type: Number
+        type: String
     },
     calculations: [
         {
@@ -28,9 +28,13 @@ let UserCalculations = new Schema({
             },
             net_superannuation: {
                 type: Number
+            },
+            created: {
+                type: Date,
+                default: Date.now()
             }
         }
     ]
 });
 
-module.exports = mongoose.model('UserCalculations', UserCalculations);
+module.exports = mongoose.model('UserCalculation', UserCalculation);
