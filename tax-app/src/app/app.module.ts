@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
 import {MatIconModule} from "@angular/material";
 import {AppRoutingModule} from "./app-routing.module";
 import {PageNotFoundModule} from "./page-not-found/page-not-found.module";
@@ -28,7 +28,7 @@ const declarations = [
 @NgModule({
   declarations: declarations,
   imports: imports,
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
