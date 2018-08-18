@@ -1,0 +1,26 @@
+<div id="header" sociHeaderscrolled>
+  <div class="top-left">
+    <div class="logo-button">
+      <div class="logo" routerLink="" (click)="scrollToTop()">
+        <div class="logo-icon">
+          <img class="icon image__fade" [src]="logoImage">
+        </div>
+      </div>
+    </div>
+    <div class="sideNav-button" (click)="onClicked()">
+      <mat-icon class="mat-icon">menu</mat-icon>
+    </div>
+  </div>
+  <div class="header__right">
+    <nav class="nav">
+      <div class="nav-item" routerLink="/taxes" routerLinkActive="active" (click)="scrollToTop()">
+        Taxes
+      </div>
+    </nav>
+    <div class="user__container">
+      <div *ngIf="!user" class="nav-item" (click)="onSignInClicked()">SIGN IN</div>
+      <!--<img *ngIf="user" class="sign-out__button image__fade"  (click)="onSignOutClicked()" [src]="firebaseUser?.photoURL" matTooltip="Sign Out {{firebaseUser?.displayName}}">-->
+    </div>
+  </div>
+</div>
+<div id="spacer"></div>

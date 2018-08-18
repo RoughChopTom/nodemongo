@@ -1,0 +1,84 @@
+.belt {
+    position: relative;
+}
+
+.belt__image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+}
+
+.belt__image__text{
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    font-style: normal;
+    letter-spacing: 0;
+    margin: 0;
+    text-align: center;
+    line-height: normal;
+    padding: 0 40px;
+
+}
+
+.belt__image__text__title{
+    font-size: 90px;
+    text-transform: uppercase;
+}
+
+.belt__image__text__post-title {
+    font-size: 32px;
+}
+
+.belt__callout {
+    padding: 60px 30px;
+    z-index: 1;
+}
+
+.belt__callout__title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    line-height: 20px;
+}
+
+.belt--yellow {
+    background: #f9d050;
+    color: #000000;
+}
+
+.belt--green {
+    background: #059334;
+    color: #ffffff;
+}
+
+.belt--blue {
+    background: #0b50a0;
+    color: #ffffff;
+}
+
+@media(min-width: 800px) {
+    .belt__image {
+        height: 600px;
+    }
+    .belt__callout {
+        position: absolute;
+        margin-top: -30px;
+        padding: 60px;
+        right: 120px;
+        width: 380px;
+        bottom: -90px;
+        box-sizing: border-box;
+    }
+    .belt__callout__title {
+        font-size: 28px;
+        line-height: 1.29;
+        margin-bottom: 30px;
+    }
+    .healthier-athletes {
+        width: 480px;
+    }
+}
