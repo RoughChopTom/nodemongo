@@ -1,0 +1,23 @@
+<div class="footer">
+  <div *ngIf="isButtonVisible" class="footer-button" data-scroll aria-label="Back to top" (click)="onFooterButtonClicked()">
+    <mat-icon class="mat-icon">keyboard_arrow_up</mat-icon>
+  </div>
+  <div class="footer-content">
+    <a href="http://www.specialolympics.org/">
+      <img class="special-olympics-logo" src="/assets/images/tax-logo.svg" href="www.google.com" alt="Special Olympics Logo">
+    </a>
+    <div class="footer-links">
+      <nav class="nav">
+        <div class="nav-item" routerLink="/faq" routerLinkActive="active" (click)="onFooterLinkClicked()">
+          FAQ
+        </div>
+        <div class="nav-item" routerLink="/languageguidelines" routerLinkActive="active" (click)="onFooterLinkClicked()">
+          Language Guidelines
+        </div>
+      </nav>
+      <div class="right">
+        <div class="email-us">EMAIL US</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,11 +9,16 @@ import {PageNotFoundModule} from "./page-not-found/page-not-found.module";
 import {HomeModule} from "./home/home.module";
 import {TransformDirective} from "./transform.directive";
 import {HeaderscrolledDirective} from "./header/header-scrolled.directive";
+import {TaxCalculatorModule} from "./tax-calculator/tax-calculator.module";
+import {FooterComponent} from "./footer/footer.component";
+import {SignInModule} from "./sign-in/sign-in.module";
 
 const imports = [
   BrowserModule,
   MatIconModule,
   HomeModule,
+  SignInModule,
+  TaxCalculatorModule,
   AppRoutingModule,
   PageNotFoundModule
 ];
@@ -21,6 +26,7 @@ const imports = [
 const declarations = [
   AppComponent,
   HeaderComponent,
+  FooterComponent,
   TransformDirective,
   HeaderscrolledDirective
 ];

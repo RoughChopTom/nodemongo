@@ -1,5 +1,22 @@
 :host {
-  display: flex;
   background-color: #ffffff;
+}
+.donations__belt__image {
+  height: 450px !important;
+}
+.donate__button {
+  margin: 20px 14px;
+  background: #b3368b;
+}
+.donate__button__text {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+}
+@media (min-width: 800px) {
+  .donations__belt__image {
+    height: 650px !important;
+  }
 }
 /*# sourceMappingURL=home.component.css.map */
