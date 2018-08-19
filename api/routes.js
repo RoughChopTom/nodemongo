@@ -1,8 +1,22 @@
 const express = require('express');
+const jwt = require('express-jwt');
 
 const UserCalculation = require('./models/user-calculation');
 
 const router = express.Router();
+
+var auth = jwt({
+    secret: 'MY_SECRET',
+    userProperty: 'payload'
+});
+
+var ctrlProfile = require('./controllers/profile');
+var ctrlAuth = require('./controllers/authentication');
+
+
+router.get('/profile', auth, ctrlProfile.profileRead);
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
 
 router.route('/usercalculations').get((req, res) => {
     UserCalculation.find((err, userCalculations) => {
