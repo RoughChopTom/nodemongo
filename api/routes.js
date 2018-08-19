@@ -14,11 +14,10 @@ var ctrlProfile = require('./controllers/profile');
 var ctrlAuth = require('./controllers/authentication');
 
 
-router.get('/profile', auth, ctrlProfile.profileRead);
-router.post('/register', ctrlAuth.register);
-router.post('/login', ctrlAuth.login);
-
-router.route('/usercalculations').get((req, res) => {
+router.get('/api/profile', auth, ctrlProfile.profileRead);
+router.post('/api/register', ctrlAuth.register);
+router.post('/api/login', ctrlAuth.login);
+router.route('/api/usercalculations').get((req, res) => {
     UserCalculation.find((err, userCalculations) => {
         if (err) {
             console.log(err);

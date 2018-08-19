@@ -13,12 +13,13 @@
   </div>
   <div class="header__right">
     <nav class="nav">
-      <div class="nav-item" routerLink="/taxcalculator" routerLinkActive="active" (click)="scrollToTop()">
+      <div *ngIf="auth.isLoggedIn()" class="nav-item" routerLink="/taxcalculator" routerLinkActive="active" (click)="scrollToTop()">
         Tax Calculator
       </div>
     </nav>
     <div class="user__container">
-      <div class="nav-item">SIGN IN</div>
+      <div *ngIf="!auth.isLoggedIn()" class="nav-item" routerLink="/signin">SIGN IN</div>
+      <div *ngIf="auth.isLoggedIn()" class="nav-item" (click)="onSignOutClicked()">SIGN OUT</div>
       <!--<img *ngIf="user" class="sign-out__button image__fade"  (click)="onSignOutClicked()" [src]="firebaseUser?.photoURL" matTooltip="Sign Out {{firebaseUser?.displayName}}">-->
     </div>
   </div>

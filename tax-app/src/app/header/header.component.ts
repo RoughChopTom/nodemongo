@@ -1,5 +1,7 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import {AuthenticationService} from "../authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'soci-header',
@@ -7,15 +9,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   logoImage = '/assets/images/tax-logo.svg';
   isSignInVisible = false;
   isSignOutVisible = false;
-  isUserAnAdmin: boolean;
   @Output() isHamburgerClicked = new EventEmitter();
 
-  ngOnInit(): void {
-  }
+  constructor(public auth: AuthenticationService, private router: Router){}
 
   onClicked() {
     this.isHamburgerClicked.emit();
@@ -25,11 +25,11 @@ export class HeaderComponent implements OnInit {
     window.scroll({ top: 0, left: 0 });
   }
 
-  // onSignInClicked() {
-  //   this.authService.googleLogin();
-  // }
-  //
-  // onSignOutClicked() {
-  //   this.authService.signOut();
-  // }
+  onSignInClicked() {
+  }
+
+  onSignOutClicked() {
+    this.auth.logout();
+    this.router.navigateByUrl('/home');
+  }
 }

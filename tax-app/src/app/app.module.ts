@@ -12,12 +12,14 @@ import {HeaderscrolledDirective} from "./header/header-scrolled.directive";
 import {TaxCalculatorModule} from "./tax-calculator/tax-calculator.module";
 import {FooterComponent} from "./footer/footer.component";
 import {SignInModule} from "./sign-in/sign-in.module";
+import {RegisterModule} from "./register/register.module";
 
 const imports = [
   BrowserModule,
   MatIconModule,
   HomeModule,
   SignInModule,
+  RegisterModule,
   TaxCalculatorModule,
   AppRoutingModule,
   PageNotFoundModule

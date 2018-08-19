@@ -5,7 +5,8 @@
       <div class="belt__image__text__post-title">This application calculates your taxes</div>
     </div>
     <button mat-button class="donate__button" routerLink="/signin">
-      <div class="donate__button__text">Sign In</div>
+      <div *ngIf="!auth.isLoggedIn()" class="donate__button__text">Sign In</div>
+      <div *ngIf="auth.isLoggedIn()" class="donate__button__text" routerLink="/taxcalculator">Calculate Taxes</div>
     </button>
   </div>
 </div>
