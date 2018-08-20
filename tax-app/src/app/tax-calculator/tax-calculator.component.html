@@ -10,65 +10,78 @@
     </div>
   </div>
 </div>
-<div>
+<div id="user-input__form">
+  <h2>Please enter information:</h2>
   <form [formGroup]="profileForm">
-    <label>
-      Superannuation percentage:
-      <input type="number" formControlName="superPercent" required>
-    </label>
-    <div>
-      <label>
-        Income Type:
-        <input type="radio" formControlName="incomeType" value="1">Gross
-        <input type="radio" formControlName="incomeType" value="2">Gross+Super
-      </label>
-      <label>
-        Income:
-        <input type="number" formControlName="income">
-      </label>
+    <mat-form-field
+      [hideRequiredMarker]="false"
+      [floatLabel]="'Superannuation Percentage'">
+      <input matInput type="number" #superPercent min="9.5" max="100" placeholder="Superannuation percentage"
+             formControlName="superPercent" required>
+      <mat-error *ngIf="superPercent">
+        Must be 9.5% - 100%
+      </mat-error>
+    </mat-form-field>
+    <div class="form-item__radios">
+      <label>Income Type: </label>
+      <mat-radio-group formControlName="incomeType">
+        <mat-radio-button class="form-item__radios__button" [value]=1>Gross</mat-radio-button>
+        <mat-radio-button class="form-item__radios__button" [value]=2>Gross + Super</mat-radio-button>
+      </mat-radio-group>
     </div>
-    <label>
-      <select formControlName="year">
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-      </select>
-    </label>
+    <div>
+      <mat-form-field
+        [hideRequiredMarker]="false"
+        [floatLabel]="'Income AUD'">
+        <input matInput type="number" #income min="0" placeholder="Income AUD" formControlName="income" required>
+        <mat-error *ngIf="income">
+          Must be greater than 0
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Tax Year" formControlName="year">
+          <mat-option [value]="2014">2014</mat-option>
+          <mat-option [value]="2015">2015</mat-option>
+          <mat-option [value]="2016">2016</mat-option>
+          <mat-option [value]="2017">2017</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </form>
-
-
-  <p>
-    Form Value: {{ profileForm.value | json }}
-  </p>
-
-  <div>
-    <div>Superannuation</div>
-    <div>{{calculations['superAnnuation']}}</div>
+  <div *ngIf="profileForm.invalid">
+    <h1>Please Enter Valid Information</h1>
   </div>
-
-  <div>
-    <div *ngIf="profileForm.value['incomeType'] == 1">Gross</div>
-    <div *ngIf="profileForm.value['incomeType'] == 2">Gross + Superannuation</div>
-    <div>{{calculations['gross']}}</div>
+  <div *ngIf="!profileForm.invalid" id="tax-value">
+    <h2>Your figures for {{profileForm.value['year']}}:</h2>
+    <div class="tax-value__item">
+      <div class="tax-value__item__title">Superannuation:</div>
+      <div class="tax-value__item__value">${{calculations['superAnnuation'] | number:'1.2-2'}}</div>
+    </div>
+    <div class="tax-value__item">
+      <div *ngIf="profileForm.value['incomeType'] == 1" class="tax-value__item__title">Gross:</div>
+      <div *ngIf="profileForm.value['incomeType'] == 2" class="tax-value__item__title">Gross + Superannuation:</div>
+      <div class="tax-value__item__value">${{calculations['gross'] | number:'1.2-2'}}</div>
+    </div>
+    <div class="tax-value__item">
+      <div class="tax-value__item__title">Tax:</div>
+      <div class="tax-value__item__value">${{calculations['tax'] | number:'1.2-2'}}</div>
+    </div>
+    <div class="tax-value__item">
+      <div class="tax-value__item__title">Net:</div>
+      <div class="tax-value__item__value">${{calculations['net'] | number:'1.2-2'}}</div>
+    </div>
+    <div class="tax-value__item">
+      <div class="tax-value__item__title">Net + Superannuation:</div>
+      <div class="tax-value__item__value">${{calculations['netSuperannuation'] | number:'1.2-2'}}</div>
+    </div>
+    <button mat-raised-button class="tax-value__save__button" (click)="onSaveClicked()">
+      <div class="tax-value__save__button__text">Save</div>
+    </button>
   </div>
-
-  <div>
-    <div>Tax</div>
-    <div>{{calculations['tax']}}</div>
-  </div>
-
-  <div>
-    <div>Net</div>
-    <div>{{calculations['net']}}</div>
-  </div>
-
-  <div>
-    <div>Net + Superannuation</div>
-    <div>{{calculations['netSuperannuation']}}</div>
-  </div>
-
-  <button mat-button class="donate__button" (click)="onSaveClicked()">
-    <div class="donate__button__text">Save</div>
-  </button>
 </div>
+
+<!--<p>-->
+<!--Form Value: {{ profileForm.value | json }}-->
+<!--</p>-->

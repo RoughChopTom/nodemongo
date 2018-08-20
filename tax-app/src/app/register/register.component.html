@@ -1,25 +1,26 @@
-<div class="container">
-
-  <div class="row">
-    <div class="col-md-6">
-      <h1>Register</h1>
-      <p class="lead">Already a member? Please <a routerLink="/login">log in</a> instead.</p>
-      <form (submit)="register()">
-        <div class="form-group">
-          <label for="name">Full name</label>
-          <input type="text" class="form-control" name="name" placeholder="Enter your name" [(ngModel)]="credentials.name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
-        </div>
-        <button type="submit" class="btn btn-default">Register!</button>
-      </form>
-    </div>
+<div class="register">
+  <div class="register__container">
+    <h1>Register</h1>
+    <div>Already a member? Please <a routerLink="/signin">sign in</a> instead.</div>
+    <form class="register__form" #registerForm="ngForm" (submit)="register()">
+      <mat-form-field
+        [floatLabel]="'Full Name'">
+        <input matInput type="text" name="name" placeholder="Full Name" required
+               [(ngModel)]="credentials.name">
+      </mat-form-field>
+      <mat-form-field
+        [floatLabel]="'Email Address'">
+        <input matInput type="email" name="email" placeholder="Email" required
+               [(ngModel)]="credentials.email">
+      </mat-form-field>
+      <mat-form-field
+        [floatLabel]="'Password'">
+        <input matInput type="password" name="password" placeholder="Password" required
+               [(ngModel)]="credentials.password">
+      </mat-form-field>
+      <button type="submit" mat-raised-button class="register__button" [disabled]="registerForm.form.invalid">
+        <div class="register__button__text">Register</div>
+      </button>
+    </form>
   </div>
-
 </div>

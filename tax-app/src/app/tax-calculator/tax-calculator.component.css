@@ -1,4 +1,46 @@
 :host {
   background-color: #ffffff;
 }
+h2 {
+  color: #b3368b;
+}
+#user-input__form {
+  margin-left: 30px;
+  margin-bottom: 15px;
+}
+.form-item__radios {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.form-item__radios__button {
+  margin-left: 10px;
+}
+#tax-value {
+  margin-top: 80px;
+}
+.tax-value__item {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.tax-value__item__title {
+  font-size: 28px;
+}
+.tax-value__item__value {
+  font-size: 28px;
+  margin-left: 10px;
+}
+.tax-value__save__button {
+  background: #b3368b;
+}
+.tax-value__save__button__text {
+  color: #ffffff;
+}
+@media (min-width: 800px) {
+  #user-input__form {
+    margin-left: 300px;
+    margin-bottom: 50px;
+  }
+}
 /*# sourceMappingURL=tax-calculator.component.css.map */

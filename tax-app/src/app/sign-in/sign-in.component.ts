@@ -17,11 +17,11 @@ export class SignInComponent {
   constructor(private auth: AuthenticationService, private router: Router) {
   }
 
-  login() {
+  signIn() {
     this.auth.login(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/taxcalculator');
     }, (err) => {
-      console.error(err);
+      console.error(err); //todo popup
     });
   }
 }

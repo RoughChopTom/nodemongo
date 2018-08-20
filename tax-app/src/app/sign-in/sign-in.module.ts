@@ -4,11 +4,15 @@ import { FormsModule } from '@angular/forms';
 
 import { SignInRoutingModule } from './sign-in-routing.module';
 import { SignInComponent } from './sign-in.component';
+import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     SignInRoutingModule
   ],
   declarations: [SignInComponent]

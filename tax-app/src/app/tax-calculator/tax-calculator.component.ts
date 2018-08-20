@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {IncomeTaxBracket, TaxCalculatorService} from "./tax-calculator.service";
 import {isUndefined} from 'util';
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-tax-calculator',
@@ -9,17 +10,16 @@ import {isUndefined} from 'util';
   styleUrls: ['./tax-calculator.component.less']
 })
 export class TaxCalculatorComponent implements OnInit {
-
   profileForm = this.fb.group({
-    superPercent: [9.5, [Validators.required, Validators.min(9.5)]],
+    superPercent: [9.5, [Validators.required, Validators.min(9.5), Validators.max(100)]],
     incomeType: [1, Validators.required],
-    income: [0, Validators.required],
+    income: [0, [Validators.required, Validators.min(0)]],
     year: [2014, Validators.required]
   });
 
   calculations: {};
 
-  constructor(private fb: FormBuilder, private taxCalculatorService: TaxCalculatorService) {
+  constructor(public snackBar: MatSnackBar, private fb: FormBuilder, private taxCalculatorService: TaxCalculatorService) {
     this.initialiseCalculations();
   }
 
@@ -30,8 +30,17 @@ export class TaxCalculatorComponent implements OnInit {
   }
 
   onSaveClicked(){
-    this.taxCalculatorService.saveRates(this.calculations);
-    console.log('clicked');
+    this.taxCalculatorService.saveRates(this.calculations).subscribe((result)=>{
+      if(result !== 200){
+        this.openSnackBar('Save Unsuccessful');
+        return;
+      }
+      this.openSnackBar('Save Successful');
+    });
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {duration: 1500});
   }
 
   private initialiseCalculations() {

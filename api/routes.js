@@ -19,22 +19,22 @@ router.post('/api/register', ctrlAuth.register);
 router.post('/api/login', ctrlAuth.login);
 
 router.route('/api/foo/:id').post((req, res, next) => {
-    UserCalculation.findOne({ userId: req.params.id}, (err, userCalculation) => {
+    UserCalculation.findOne({userId: req.params.id}, (err, userCalculation) => {
         if (!userCalculation) {
             userCalculation = new UserCalculation();
             userCalculation.userId = req.params.id;
         }
         userCalculation.calculations.push(req.body);
         userCalculation.save().then(() => {
-            res.json('Successfully added calculation to user');
+            res.status(200).json(200);
         }).catch(() => {
-            res.status(400).send('Adding calculation failed');
+            res.status(400).json(400);
         });
     });
 });
 
 router.route('/api/foo/:id').get((req, res, next) => {
-    UserCalculation.findOne({ userId: req.params.id}, (err, userCalculation) => {
+    UserCalculation.findOne({userId: req.params.id}, (err, userCalculation) => {
         if (err) {
             console.log(err);
             return;
