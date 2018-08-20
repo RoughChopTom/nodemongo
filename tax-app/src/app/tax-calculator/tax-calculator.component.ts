@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {IncomeTaxBracket, TaxCalculatorService} from "./tax-calculator.service";
-import {isUndefined} from "util";
+import {isUndefined} from 'util';
 
 @Component({
   selector: 'app-tax-calculator',
@@ -11,10 +11,10 @@ import {isUndefined} from "util";
 export class TaxCalculatorComponent implements OnInit {
 
   profileForm = this.fb.group({
-    superPercent: ['9.5', Validators.required],
-    incomeType: ['1', Validators.required],
-    income: ['0', Validators.required],
-    year: ['2014', Validators.required]
+    superPercent: [9.5, [Validators.required, Validators.min(9.5)]],
+    incomeType: [1, Validators.required],
+    income: [0, Validators.required],
+    year: [2014, Validators.required]
   });
 
   calculations: {};
@@ -23,11 +23,15 @@ export class TaxCalculatorComponent implements OnInit {
     this.initialiseCalculations();
   }
 
-
   ngOnInit(): void {
     this.profileForm.valueChanges.subscribe(() => {
       this.setCalcuations();
     });
+  }
+
+  onSaveClicked(){
+    this.taxCalculatorService.saveRates(this.calculations);
+    console.log('clicked');
   }
 
   private initialiseCalculations() {

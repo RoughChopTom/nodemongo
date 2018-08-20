@@ -2,25 +2,24 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-let UserCalculation = new Schema({
+let UserRate = new Schema({
     userId: {
-        type: String
+        type: String,
+        unique: true,
+        required: true
     },
-    calculations: [
+    rates: [
         {
-            superAnnuation: {
+            superPercent: {
                 type: Number
             },
-            gross: {
+            incomeType: {
                 type: Number
             },
-            tax: {
+            income: {
                 type: Number
             },
-            net: {
-                type: Number
-            },
-            netSuperannuation: {
+            year: {
                 type: Number
             },
             created: {
@@ -31,4 +30,4 @@ let UserCalculation = new Schema({
     ]
 });
 
-module.exports = mongoose.model('UserCalculation', UserCalculation);
+module.exports = mongoose.model('UserRate', UserRate);

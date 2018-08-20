@@ -1,4 +1,8 @@
 import {Injectable} from '@angular/core';
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
+import {AuthenticationService} from "../authentication.service";
 
 export class IncomeTaxBracket {
   min: number;
@@ -16,6 +20,9 @@ export class IncomeTaxBracket {
 
 @Injectable()
 export class TaxCalculatorService {
+
+  constructor(private http: HttpClient, private auth: AuthenticationService) {
+  }
 
   getTaxRates(year: number): IncomeTaxBracket[] {
     const taxRates = {};
@@ -36,5 +43,21 @@ export class TaxCalculatorService {
     taxRates[2015] = bracket;
 
     return taxRates[year];
+  }
+
+  saveRates(calculations: any) {
+    this.http.post(`/api/foo/${this.userId()}`, calculations).subscribe((foo)=>{
+      console.log(foo);
+    })
+  }
+
+  getSavedCalculations(){
+    this.http.get(`/api/foo/${this.userId()}`).subscribe((foo)=>{
+      console.log(foo);
+    })
+  }
+
+  private userId() {
+    return this.auth.getUserDetails()["_id"];
   }
 }
