@@ -1,3 +1,70 @@
-<p>
-  tax-calculator works!
-</p>
+<div class="main__container">
+  <div class="main__content">
+    <div class="main__content__container">
+      <div class="main__content__left">
+        <div class="main__content__title">Tax Calculator</div>
+        <div class="main__content__body">Here you can calculate a simple tax amount estimation from a given income and a
+          tax rates year, then save them under your profile.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <form [formGroup]="profileForm">
+    <label>
+      Superannuation percentage:
+      <input type="number" formControlName="superPercent" required>
+    </label>
+    <div>
+      <label>
+        Income Type:
+        <input type="radio" formControlName="incomeType" value="1">Gross
+        <input type="radio" formControlName="incomeType" value="2">Gross+Super
+      </label>
+      <label>
+        Income:
+        <input type="number" formControlName="income">
+      </label>
+    </div>
+    <label>
+      <select formControlName="year">
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+      </select>
+    </label>
+  </form>
+
+
+  <p>
+    Form Value: {{ profileForm.value | json }}
+  </p>
+
+  <div>
+    <div>Superannuation</div>
+    <div>{{calculations['superAnnuation']}}</div>
+  </div>
+
+  <div>
+    <div *ngIf="profileForm.value['incomeType'] == 1">Gross</div>
+    <div *ngIf="profileForm.value['incomeType'] == 2">Gross + Superannuation</div>
+    <div>{{calculations['gross']}}</div>
+  </div>
+
+  <div>
+    <div>Tax</div>
+    <div>{{calculations['tax']}}</div>
+  </div>
+
+  <div>
+    <div>Net</div>
+    <div>{{calculations['net']}}</div>
+  </div>
+
+  <div>
+    <div>Net + Superannuation</div>
+    <div>{{calculations['netSuperannuation']}}</div>
+  </div>
+</div>
