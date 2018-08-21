@@ -14,17 +14,25 @@ module.exports.register = function (req, res) {
         });
         return;
     }
-    let user = new User();
-    user.name = req.body.name;
-    user.email = req.body.email;
-    user.setPassword(req.body.password);
-    user.save(function () {
-        let token;
-        token = user.generateJwt();
-        res.status(200);
-        res.json({
-            "token": token
-        });
+    User.findOne({email: req.body.email}, (err, user) => {
+        if (user) {
+            sendJSONresponse(res, 200, {
+                "message": "Email already registered, use another"
+            });
+        } else {
+            let user = new User();
+            user.name = req.body.name;
+            user.email = req.body.email;
+            user.setPassword(req.body.password);
+            user.save(function () {
+                let token;
+                token = user.generateJwt();
+                res.status(200);
+                res.json({
+                    "token": token
+                });
+            });
+        }
     });
 };
 

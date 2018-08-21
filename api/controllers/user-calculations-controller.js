@@ -19,7 +19,7 @@ module.exports.addCalculations = function (req, res) {
 module.exports.getCalculations = function (req, res) {
     UserCalculations.findOne({userId: req.params.id}, (err, userCalculations) => {
         if (err) {
-            console.log(err);
+            res.status(404).json(err);
             return;
         }
         if (userCalculations == null) {
@@ -32,7 +32,7 @@ module.exports.getCalculations = function (req, res) {
 module.exports.deleteCalculations = function (req, res) {
     UserCalculations.findOne({userId: req.params.id}, (err, userCalculations) => {
         if (err) {
-            console.log(err);
+            res.status(404).json(err);
             return;
         }
         if (userCalculations == null) {

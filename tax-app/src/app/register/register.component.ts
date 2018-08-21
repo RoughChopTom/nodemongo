@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 
 import {AuthenticationService, TokenPayload} from "../authentication.service";
+import {MatSnackBar} from '@angular/material';
 
 
 @Component({
@@ -16,14 +17,21 @@ export class RegisterComponent {
     password: ''
   };
 
-  constructor(private auth: AuthenticationService, private router: Router) { }
+  constructor(private snackBar: MatSnackBar, private auth: AuthenticationService, private router: Router) { }
 
   register() {
-    this.auth.register(this.credentials).subscribe(() => {
+    this.auth.register(this.credentials).subscribe((result) => {
+      if(result['message']){
+        this.openSnackBar(result['message']);
+        return;
+      }
       this.router.navigateByUrl('/taxcalculator');
-    }, (err) => {
-      console.error(err);
+    }, () => {
+      this.openSnackBar('Registration Failed')
     });
   }
 
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {duration: 2500});
+  }
 }

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SignInRoutingModule } from './sign-in-routing.module';
 import { SignInComponent } from './sign-in.component';
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -13,6 +13,7 @@ import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/mate
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
     SignInRoutingModule
   ],
   declarations: [SignInComponent]

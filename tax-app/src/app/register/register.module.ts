@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {RegisterRoutingModule} from './register-routing.module';
 import {RegisterComponent} from './register.component';
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -15,6 +15,7 @@ import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/mate
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
     RegisterRoutingModule
   ],
   declarations: [RegisterComponent]

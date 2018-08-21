@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 import {AuthenticationService, TokenPayload} from "../authentication.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-sign-in',
@@ -14,14 +15,18 @@ export class SignInComponent {
     password: ''
   };
 
-  constructor(private auth: AuthenticationService, private router: Router) {
+  constructor(private snackBar: MatSnackBar, private auth: AuthenticationService, private router: Router) {
   }
 
   signIn() {
     this.auth.login(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/taxcalculator');
     }, (err) => {
-      console.error(err); //todo popup
+      this.openSnackBar('Username or Password is Incorrect');
     });
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {duration: 2500});
   }
 }
