@@ -105,14 +105,9 @@ export class TaxCalculatorComponent implements OnInit {
       return 0;
     }
     let tax = 0;
-    for (let i = 0; i < taxBrackets.length; i++) {
-      if (taxBrackets[i].min >= income) {
-        break;
-      }
-      tax += taxBrackets[i].additional;
-      let delta = taxBrackets[i].max > income ? income - taxBrackets[i].min : taxBrackets[i].max - taxBrackets[i].min;
-      tax += delta * taxBrackets[i].rate;
-    }
+    let mybracket = taxBrackets.find(x => x.min < income && x.max > income);
+    tax += mybracket.additional;
+    tax += (income - mybracket.min) * mybracket.rate;
     return tax;
   }
 

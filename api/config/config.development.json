@@ -1,4 +1,5 @@
 {
   "mongodbContext": "mongodb+srv://tomo:changeme@cluster0-kktwg.mongodb.net/test?retryWrites=true",
-  "jwtSecret": "changeme"
+  "jwtSecret": "changeme",
+  "expressPort": 4000
 }

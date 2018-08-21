@@ -15,13 +15,12 @@ mongoose.connect(configData.mongodbContext, {useNewUrlParser: true}, () => {}).c
 mongoose.connection.once('open', () => {
     console.log('MongoDB database connection established successfully!');
 });
-app.use(passport.initialize());
+app.use(passport.initialize({}));
 app.use('/', routes.router);
-
 app.use(function (err, req, res) {
     if (err.name === 'UnauthorizedError') {
         res.status(401);
         res.json({"message" : err.name + ": " + err.message});
     }
 });
-app.listen(4000, () => console.log(`Express server running on port 4000`));
+app.listen(configData.expressPort, () => console.log(`Express server running on port ` + configData.expressPort));

@@ -1,23 +1,19 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'soci-footer',
+  selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.less']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
   isButtonVisible = true;
 
-  ngOnInit() {
-    // this.isButtonVisible = this.isScrollBarVisible();
-  }
-
   onFooterButtonClicked() {
-    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    window.scroll({top: 0, left: 0, behavior: 'smooth'});
   }
 
   onFooterLinkClicked() {
-    window.scroll({ top: 0, left: 0 });
+    window.scroll({top: 0, left: 0});
   }
 
   private isScrollBarVisible(): boolean {
