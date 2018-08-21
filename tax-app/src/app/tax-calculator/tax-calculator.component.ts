@@ -4,12 +4,13 @@ import {IncomeTaxBracket, TaxCalculatorService} from "./tax-calculator.service";
 import {isUndefined} from 'util';
 import {MatSnackBar} from "@angular/material";
 
-export interface Calculations{
+export interface Calculations {
   superAnnuation: number;
   gross: number;
   tax: number;
   net: number;
   netSuperannuation: number;
+  year: number;
 }
 
 @Component({
@@ -37,9 +38,9 @@ export class TaxCalculatorComponent implements OnInit {
     });
   }
 
-  onSaveClicked(){
-    this.taxCalculatorService.saveRates(this.calculations).subscribe((result)=>{
-      if(result !== 200){
+  onSaveClicked() {
+    this.taxCalculatorService.saveRates(this.calculations).subscribe((result) => {
+      if (result !== 200) {
         this.openSnackBar('Save Unsuccessful');
         return;
       }
@@ -58,20 +59,33 @@ export class TaxCalculatorComponent implements OnInit {
       tax: 0,
       net: 0,
       netSuperannuation: 0,
+      year: this.selectedYear()
     };
   }
 
   private setCalcuations() {
-    const superPercent = parseFloat(this.profileForm.value['superPercent']);
-    const incomeType = parseInt(this.profileForm.value['incomeType']);
-    const income = parseFloat(this.profileForm.value['income']);
-    const year = parseInt(this.profileForm.value['year']);
+    this.calculations['superAnnuation'] = this.superAnnuation(this.selectedSuperPercent(), this.seletedIncome());
+    this.calculations['gross'] = this.gross(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType());
+    this.calculations['tax'] = this.tax(this.seletedIncome(), this.selectedYear());
+    this.calculations['net'] = this.net(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType(), this.selectedYear());
+    this.calculations['netSuperannuation'] = this.netSuperannuation(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType(), this.selectedYear());
+    this.calculations['year'] = this.selectedYear();
+  }
 
-    this.calculations['superAnnuation'] = this.superAnnuation(superPercent, income);
-    this.calculations['gross'] = this.gross(superPercent, income, incomeType);
-    this.calculations['tax'] = this.tax(income, year);
-    this.calculations['net'] = this.net(superPercent, income, incomeType, year);
-    this.calculations['netSuperannuation'] = this.netSuperannuation(superPercent, income, incomeType, year);
+  private selectedSuperPercent(): number {
+    return parseFloat(this.profileForm.value['superPercent']);
+  }
+
+  private selectedIncomeType(): number {
+    return parseInt(this.profileForm.value['incomeType']);
+  }
+
+  private seletedIncome(): number {
+    return parseFloat(this.profileForm.value['income']);
+  }
+
+  private selectedYear(): number {
+    return parseInt(this.profileForm.value['year']);
   }
 
   private superAnnuation(superPercent: number, income: number): number {

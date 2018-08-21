@@ -29,6 +29,34 @@ table {
 }
 td,
 th {
-  width: 14%;
+  width: 12.5%;
+}
+tr.example-detail-row {
+  height: 0;
+}
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: #f5f5f5;
+}
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+.example-element-row td {
+  border-bottom-width: 0;
+  cursor: default;
+}
+.tax-rate__container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.tax-rate__heading {
+  font-size: 18px;
+}
+.tax-rate__item {
+  display: flex;
+  flex-direction: row;
+}
+.tax-rate__item__label {
+  margin-right: 15px;
 }
 /*# sourceMappingURL=history.component.css.map */

@@ -23,6 +23,9 @@ let UserCalculation = new Schema({
             netSuperannuation: {
                 type: Number
             },
+            year:{
+                type: Number
+            },
             created: {
                 type: Date,
                 default: function(){
