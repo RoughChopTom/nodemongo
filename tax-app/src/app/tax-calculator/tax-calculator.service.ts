@@ -63,13 +63,7 @@ export class TaxCalculatorService {
   }
 
   saveRates(calculations: any): Observable<Object> {
-    return this.http.post(`/api/foo/${this.userId()}`, calculations);
-  }
-
-  getSavedCalculations(){
-    this.http.get(`/api/foo/${this.userId()}`).subscribe((foo)=>{
-      console.log(foo);
-    })
+    return this.http.post(`/api/addCalculations/${this.userId()}`, calculations);
   }
 
   private userId() {

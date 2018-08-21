@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AuthenticationService} from "../authentication.service";
 
@@ -11,11 +10,11 @@ export class HistoryService {
   }
 
   deleteCalculations(calculationIds): Promise<Object> {
-    return this.http.put(`/api/foo/${this.userId()}`, calculationIds).toPromise();
+    return this.http.put(`/api/deleteCalculations/${this.userId()}`, calculationIds).toPromise();
   }
 
   getCalculations(): Promise<Object> {
-    return this.http.get(`/api/foo/${this.userId()}`).toPromise();
+    return this.http.get(`/api/getCalculations/${this.userId()}`).toPromise();
   }
 
   private userId() {

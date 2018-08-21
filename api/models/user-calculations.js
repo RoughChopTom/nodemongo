@@ -1,8 +1,6 @@
-const mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
-let UserCalculation = new Schema({
+let userCalculationsSchema = new mongoose.Schema({
     userId: {
         type: String
     },
@@ -37,4 +35,4 @@ let UserCalculation = new Schema({
     ]
 });
 
-module.exports = mongoose.model('UserCalculation', UserCalculation);
+mongoose.model('UserCalculations', userCalculationsSchema);
