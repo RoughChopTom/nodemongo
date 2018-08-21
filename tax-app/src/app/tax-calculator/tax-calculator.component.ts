@@ -53,17 +53,21 @@ export class TaxCalculatorComponent implements OnInit {
       tax: 0,
       net: 0,
       netSuperannuation: 0,
-      year: this.selectedYear()
+      year: this.selectedYear(),
+      income: this.seletedIncome(),
+      superPercent: this.selectedSuperPercent()
     };
   }
 
   private setCalcuations() {
-    this.calculations['superAnnuation'] = this.superAnnuation(this.selectedSuperPercent(), this.seletedIncome());
-    this.calculations['gross'] = this.gross(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType());
-    this.calculations['tax'] = this.tax(this.seletedIncome(), this.selectedYear());
-    this.calculations['net'] = this.net(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType(), this.selectedYear());
-    this.calculations['netSuperannuation'] = this.netSuperannuation(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType(), this.selectedYear());
-    this.calculations['year'] = this.selectedYear();
+    this.calculations.superAnnuation = this.superAnnuation(this.selectedSuperPercent(), this.seletedIncome());
+    this.calculations.gross = this.gross(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType());
+    this.calculations.tax = this.tax(this.seletedIncome(), this.selectedYear());
+    this.calculations.net = this.net(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType(), this.selectedYear());
+    this.calculations.netSuperannuation = this.netSuperannuation(this.selectedSuperPercent(), this.seletedIncome(), this.selectedIncomeType(), this.selectedYear());
+    this.calculations.year = this.selectedYear();
+    this.calculations.income = this.seletedIncome();
+    this.calculations.superPercent = this.selectedSuperPercent();
   }
 
   private selectedSuperPercent(): number {
@@ -100,6 +104,9 @@ export class TaxCalculatorComponent implements OnInit {
     }
     let tax = 0;
     let mybracket = taxBrackets.find(x => x.min < income && x.max > income);
+    if(isUndefined(mybracket)){
+      return;
+    }
     tax += mybracket.additional;
     tax += (income - mybracket.min) * mybracket.rate;
     return tax;

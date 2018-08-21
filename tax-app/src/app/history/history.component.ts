@@ -21,7 +21,7 @@ import {IncomeTaxBracket} from "../tax-calculator/income-tax-bracket";
 })
 
 export class HistoryComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'created', 'superAnnuation', 'gross', 'tax', 'net', 'netSuperannuation', 'taxYear'];
+  displayedColumns: string[] = ['select', 'created', 'income', 'superPercent', 'superAnnuation', 'gross', 'tax', 'net', 'netSuperannuation', 'taxYear'];
   dataSource: MatTableDataSource<Object> = new MatTableDataSource();
   selection = new SelectionModel<Object>(true, []);
   isLoadingData = false;

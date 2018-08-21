@@ -24,6 +24,12 @@ let userCalculationsSchema = new mongoose.Schema({
             year:{
                 type: Number
             },
+            income:{
+                type: Number
+            },
+            superPercent:{
+                type: Number
+            },
             created: {
                 type: Date,
                 default: function(){

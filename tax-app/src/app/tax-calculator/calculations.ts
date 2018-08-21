@@ -5,4 +5,6 @@ export interface Calculations {
   net: number;
   netSuperannuation: number;
   year: number;
+  income: number;
+  superPercent: number;
 }
