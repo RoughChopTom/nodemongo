@@ -1,23 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {AuthenticationService} from "../authentication.service";
 
-export class IncomeTaxBracket {
-  min: number;
-  max: number;
-  rate: number;
-  additional: number;
-  text: string;
-
-  constructor(min: number, max: number, rate: number, additional: number, text: string) {
-    this.min = min;
-    this.max = max;
-    this.rate = rate;
-    this.additional = additional;
-    this.text = text;
-  }
-}
+import {AuthenticationService} from "../authentication/authentication.service";
+import {IncomeTaxBracket} from "./income-tax-bracket";
 
 @Injectable()
 export class TaxCalculatorService {
@@ -26,7 +12,7 @@ export class TaxCalculatorService {
   }
 
   getTaxRates(year: number): IncomeTaxBracket[] {
-    const taxRates = {};
+    let taxRates = {};
     let bracket = [];
     bracket.push(new IncomeTaxBracket(0, 18200, 0, 0, 'Nill'));
     bracket.push(new IncomeTaxBracket(18201, 37000, .19, 0, '19c for each $1 over $18,200'));

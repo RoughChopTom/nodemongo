@@ -9,7 +9,7 @@ export class AuthenticationGuard implements CanActivate {
 
   canActivate() {
     if (!this.auth.isLoggedIn()) {
-      this.router.navigateByUrl('**');
+      this.router.navigateByUrl('pagenotfound');
       return false;
     }
     return true;

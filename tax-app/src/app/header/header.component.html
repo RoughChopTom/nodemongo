@@ -1,4 +1,4 @@
-<div id="header" sociHeaderscrolled>
+<div id="header" appHeaderscrolled>
   <div class="top-left">
     <div class="logo-button">
       <div class="logo" routerLink="" (click)="scrollToTop()">
@@ -6,9 +6,6 @@
           <img class="icon image__fade" [src]="logoImage">
         </div>
       </div>
-    </div>
-    <div class="sideNav-button" (click)="onClicked()">
-      <mat-icon class="mat-icon">menu</mat-icon>
     </div>
   </div>
   <div class="header__right">
@@ -23,7 +20,6 @@
     <div class="user__container">
       <div *ngIf="!auth.isLoggedIn()" class="nav-item" routerLink="/signin">SIGN IN</div>
       <div *ngIf="auth.isLoggedIn()" class="nav-item" (click)="onSignOutClicked()">SIGN OUT</div>
-      <!--<img *ngIf="user" class="sign-out__button image__fade"  (click)="onSignOutClicked()" [src]="firebaseUser?.photoURL" matTooltip="Sign Out {{firebaseUser?.displayName}}">-->
     </div>
   </div>
 </div>

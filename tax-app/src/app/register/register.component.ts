@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-
-import {AuthenticationService, TokenPayload} from "../authentication.service";
 import {MatSnackBar} from '@angular/material';
 
+import {AuthenticationService} from "../authentication/authentication.service";
+import {TokenPayload} from "../authentication/token-payload";
 
 @Component({
   selector: 'app-register',
@@ -31,7 +31,7 @@ export class RegisterComponent {
     });
   }
 
-  openSnackBar(message: string) {
+  private openSnackBar(message: string) {
     this.snackBar.open(message, '', {duration: 2500});
   }
 }

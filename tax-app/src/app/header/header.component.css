@@ -128,14 +128,6 @@
 .nav-item.active:hover {
   border-bottom: 3px solid #b3368b;
 }
-.donate__button {
-  margin: 7px 14px;
-  background: #b3368b;
-}
-.donate__button__text {
-  color: #ffffff;
-  font-weight: 600;
-}
 .sign-in__button {
   cursor: pointer;
   display: flex;

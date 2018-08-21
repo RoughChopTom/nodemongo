@@ -1,17 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {IncomeTaxBracket, TaxCalculatorService} from "./tax-calculator.service";
 import {isUndefined} from 'util';
-import {MatSnackBar} from "@angular/material";
+import {MatSnackBar} from '@angular/material';
 
-export interface Calculations {
-  superAnnuation: number;
-  gross: number;
-  tax: number;
-  net: number;
-  netSuperannuation: number;
-  year: number;
-}
+import {IncomeTaxBracket} from "./income-tax-bracket";
+import {Calculations} from "./calculations";
+import {TaxCalculatorService} from "./tax-calculator.service";
 
 @Component({
   selector: 'app-tax-calculator',
@@ -19,14 +13,14 @@ export interface Calculations {
   styleUrls: ['./tax-calculator.component.less']
 })
 export class TaxCalculatorComponent implements OnInit {
+  calculations: Calculations;
+
   profileForm = this.fb.group({
     superPercent: [9.5, [Validators.required, Validators.min(9.5), Validators.max(100)]],
     incomeType: [1, Validators.required],
     income: [0, [Validators.required, Validators.min(0)]],
     year: [2014, Validators.required]
   });
-
-  calculations: Calculations;
 
   constructor(public snackBar: MatSnackBar, private fb: FormBuilder, private taxCalculatorService: TaxCalculatorService) {
     this.initialiseCalculations();

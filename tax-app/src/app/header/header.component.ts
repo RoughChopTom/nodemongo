@@ -1,6 +1,7 @@
 import {Component, Output, EventEmitter} from '@angular/core';
-import {AuthenticationService} from "../authentication.service";
 import {Router} from "@angular/router";
+
+import {AuthenticationService} from "../authentication/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -10,22 +11,12 @@ import {Router} from "@angular/router";
 
 export class HeaderComponent {
   logoImage = '/assets/images/tax-logo.svg';
-  isSignInVisible = false;
-  isSignOutVisible = false;
-  @Output() isHamburgerClicked = new EventEmitter();
 
   constructor(public auth: AuthenticationService, private router: Router) {
   }
 
-  onClicked() {
-    this.isHamburgerClicked.emit();
-  }
-
   scrollToTop() {
     window.scroll({top: 0, left: 0});
-  }
-
-  onSignInClicked() {
   }
 
   onSignOutClicked() {

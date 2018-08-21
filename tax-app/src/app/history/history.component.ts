@@ -2,8 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+
 import {HistoryService} from "./history.service";
-import {IncomeTaxBracket, TaxCalculatorService} from "../tax-calculator/tax-calculator.service";
+import {TaxCalculatorService} from "../tax-calculator/tax-calculator.service";
+import {IncomeTaxBracket} from "../tax-calculator/income-tax-bracket";
 
 @Component({
   selector: 'app-history',
@@ -32,14 +34,8 @@ export class HistoryComponent implements OnInit {
     this.refreshData();
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
   onDeleteClicked() {
-    var calculationIds = this.selection.selected.map(x => x['_id']);
+    let calculationIds = this.selection.selected.map(x => x['_id']);
     this.historyService.deleteCalculations(calculationIds).then((result) => {
       if (result === 200) {
         this.refreshData();
@@ -51,7 +47,7 @@ export class HistoryComponent implements OnInit {
     this.refreshData();
   }
 
-  foo(year: number): IncomeTaxBracket[]{
+  taxRates(year: number): IncomeTaxBracket[]{
     return this.taxCalculatorService.getTaxRates(year);
   }
 
