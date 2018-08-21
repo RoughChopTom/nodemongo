@@ -39,7 +39,30 @@ router.route('/api/foo/:id').get((req, res, next) => {
             console.log(err);
             return;
         }
+        if(userCalculation == null){
+            return res.json([]);
+        }
         res.json(userCalculation.calculations);
+    })
+});
+
+router.route('/api/foo/:id').put((req, res, next) => {
+    UserCalculation.findOne({userId: req.params.id}, (err, userCalculation) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        if(userCalculation == null){
+            return;
+        }
+
+        userCalculation.calculations = userCalculation.calculations.filter(x => req.body.indexOf(x._id.toString()) === -1);
+        userCalculation.save().then(() => {
+            res.status(200).json(200);
+        }).catch(() => {
+            res.status(400).json(400);
+        });
+
     })
 });
 

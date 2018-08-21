@@ -4,6 +4,14 @@ import {IncomeTaxBracket, TaxCalculatorService} from "./tax-calculator.service";
 import {isUndefined} from 'util';
 import {MatSnackBar} from "@angular/material";
 
+export interface Calculations{
+  superAnnuation: number;
+  gross: number;
+  tax: number;
+  net: number;
+  netSuperannuation: number;
+}
+
 @Component({
   selector: 'app-tax-calculator',
   templateUrl: './tax-calculator.component.html',
@@ -17,7 +25,7 @@ export class TaxCalculatorComponent implements OnInit {
     year: [2014, Validators.required]
   });
 
-  calculations: {};
+  calculations: Calculations;
 
   constructor(public snackBar: MatSnackBar, private fb: FormBuilder, private taxCalculatorService: TaxCalculatorService) {
     this.initialiseCalculations();

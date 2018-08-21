@@ -1,0 +1,34 @@
+:host {
+  background: #ffffff;
+}
+.history__container {
+  display: flex;
+  flex-direction: column;
+  margin: 100px;
+}
+.history__spinner {
+  display: flex;
+  align-self: center;
+}
+.history__toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+.history__toolbar__button {
+  background: #b3368b;
+}
+.history__toolbar__button__text {
+  color: #ffffff;
+}
+table {
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+td,
+th {
+  width: 14%;
+}
+/*# sourceMappingURL=history.component.css.map */

@@ -13,6 +13,7 @@ import {TaxCalculatorModule} from "./tax-calculator/tax-calculator.module";
 import {FooterComponent} from "./footer/footer.component";
 import {SignInModule} from "./sign-in/sign-in.module";
 import {RegisterModule} from "./register/register.module";
+import {HistoryModule} from "./history/history.module";
 
 const imports = [
   BrowserModule,
@@ -21,6 +22,7 @@ const imports = [
   SignInModule,
   RegisterModule,
   TaxCalculatorModule,
+  HistoryModule,
   AppRoutingModule,
   PageNotFoundModule
 ];

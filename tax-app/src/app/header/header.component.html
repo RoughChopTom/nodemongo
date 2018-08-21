@@ -16,6 +16,9 @@
       <div *ngIf="auth.isLoggedIn()" class="nav-item" routerLink="/taxcalculator" routerLinkActive="active" (click)="scrollToTop()">
         Tax Calculator
       </div>
+      <div *ngIf="auth.isLoggedIn()" class="nav-item" routerLink="/history" routerLinkActive="active" (click)="scrollToTop()">
+        History
+      </div>
     </nav>
     <div class="user__container">
       <div *ngIf="!auth.isLoggedIn()" class="nav-item" routerLink="/signin">SIGN IN</div>

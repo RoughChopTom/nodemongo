@@ -25,7 +25,10 @@ let UserCalculation = new Schema({
             },
             created: {
                 type: Date,
-                default: Date.now()
+                default: function(){
+                    let date = new Date();
+                    return date.getTime();
+                }
             }
         }
     ]
